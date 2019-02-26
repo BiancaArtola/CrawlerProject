@@ -32,6 +32,7 @@ def crawl(request):
     # Post requests are for new crawling tasks
     if request.method == 'POST':
 
+
         url = request.POST.get('url', None) # take url comes from client. (From an input may be?)
 
         if not url:
@@ -50,12 +51,14 @@ def crawl(request):
             'unique_id': unique_id, # unique ID for each record for DB
             'USER_AGENT': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
         }
-
+        print("ESTOY EN PYTHON LA CONCHA DE TU MADRE NUEVA")
+        print(url)
         # Here we schedule a new crawling task from scrapyd. 
         # Notice that settings is a special argument name. 
         # But we can pass other arguments, though.
         # This returns a ID which belongs and will be belong to this task
         # We are goint to use that to check task's status.
+
         task = scrapyd.schedule('default', 'icrawler', 
             settings=settings, url=url, domain=domain)
 

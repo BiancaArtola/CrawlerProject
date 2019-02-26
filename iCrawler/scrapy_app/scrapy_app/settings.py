@@ -11,6 +11,7 @@ import sys
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 import django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE","scrapy_app.settings")
 django.setup()
 BOT_NAME = 'scrapy_app'
 
