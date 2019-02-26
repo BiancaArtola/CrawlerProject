@@ -80,3 +80,22 @@ typings/
 .serverless/
 
 # FuseBox cache
+iCrawler/main/migrations/__pycache__/__init__.cpython-35.pyc
+iCrawler/main/migrations/__pycache__/0001_initial.cpython-35.pyc
+iCrawler/main/__pycache__/views.cpython-35.pyc
+iCrawler/main/__pycache__/urls.cpython-35.pyc
+iCrawler/main/__pycache__/serializers.cpython-35.pyc
+iCrawler/main/__pycache__/models.cpython-35.pyc
+iCrawler/main/__pycache__/admin.cpython-35.pyc
+iCrawler/main/__pycache__/__init__.cpython-35.pyc
+iCrawler/iCrawler/__pycache__/wsgi.cpython-35.pyc
+iCrawler/iCrawler/__pycache__/urls.cpython-35.pyc
+iCrawler/iCrawler/__pycache__/settings.cpython-35.pyc
+iCrawler/iCrawler/__pycache__/__init__.cpython-35.pyc
+iCrawler/frontend/migrations/__pycache__/__init__.cpython-35.pyc
+iCrawler/frontend/__pycache__/views.cpython-35.pyc
+iCrawler/frontend/__pycache__/urls.cpython-35.pyc
+iCrawler/frontend/__pycache__/models.cpython-35.pyc
+iCrawler/frontend/__pycache__/admin.cpython-35.pyc
+iCrawler/frontend/__pycache__/__init__.cpython-35.pyc
+Twisted-18.9.0-cp35-cp35m-win_amd64.whl
