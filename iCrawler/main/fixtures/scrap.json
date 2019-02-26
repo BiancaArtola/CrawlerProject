@@ -1,0 +1,20 @@
+[
+    {
+        "model": "main.ScrapyItem",
+        "pk": 1,
+        "fields": {
+            "unique_id": 1,
+            "data": "something@gmail.com",
+            "date": "2019-02-25T13:33:58.992373Z"
+        }
+    },
+    {
+        "model": "main.ScrapyItem",
+        "pk": 2,
+        "fields": {
+            "unique_id": 2,
+            "data": "something@gmail.com",
+            "date": "2019-02-25T13:33:58.992373Z"
+        }
+    }
+]
