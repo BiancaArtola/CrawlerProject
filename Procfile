@@ -1,1 +1,1 @@
-web: gunicorn iCrawler.wsgi:application --log-file -
+web: waitress-serve --port=$PORT iCrawler.wsgi:application

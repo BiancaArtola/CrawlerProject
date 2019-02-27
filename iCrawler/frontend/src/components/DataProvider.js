@@ -4,7 +4,7 @@ class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'https://www.ordenacionjuego.es/es/url-operadores',
+          url: 'https://psicologiaymente.com/cultura/webs-cine-ver-peliculas-gratis',
           crawlingStatus: null,
           data: null,
           taskID: null,
