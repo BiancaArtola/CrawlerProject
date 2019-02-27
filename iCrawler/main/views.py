@@ -61,7 +61,7 @@ def crawl(request):
 
         task = scrapyd.schedule('default', 'icrawler', 
             settings=settings, url=url, domain=domain)
-
+        print("dhkaj")
         return JsonResponse({'task_id': task, 'unique_id': unique_id, 'status': 'started' })
 
     # Get requests are for getting result of a specific crawling task
