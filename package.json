@@ -23,5 +23,8 @@
     "weak-key": "^1.0.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
+  },
+  "engines": {
+    "node": "10.15.1"
   }
 }
