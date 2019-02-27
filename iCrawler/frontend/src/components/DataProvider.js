@@ -4,7 +4,7 @@ class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'https://listas.20minutos.es/lista/las-5-mejores-paginas-para-ver-peliculas-online-412772/',
+          url: 'https://www.labrujula24.com/',
           crawlingStatus: null,
           data: null,
           taskID: null,
