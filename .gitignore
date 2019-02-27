@@ -101,3 +101,4 @@ iCrawler/frontend/__pycache__/__init__.cpython-35.pyc
 Twisted-18.9.0-cp35-cp35m-win_amd64.whl
 *.pyc
 *.db
+iCrawler/frontend/static/frontend/main.js
