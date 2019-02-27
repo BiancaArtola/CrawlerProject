@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --mode development ./iCrawler/frontend/src/index.js --output ./iCrawler/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development ./iCrawler/frontend/src/index.js --output ./iCrawler/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./iCrawler/frontend/src/index.js --output ./iCrawler/frontend/static/frontend/main.js"
   },
   "keywords": [],

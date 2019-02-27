@@ -1,18 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-
-# Scrapy settings for scrapy_app project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     https://doc.scrapy.org/en/latest/topics/settings.html
-#     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+sys.path.append(os.path.dirname(os.path.abspath('.')))
+os.environ.setdefault("DJANGO_SETTINGS_MODULE","iCrawler.settings")
 import django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE","scrapy_app.settings")
 django.setup()
+
+
 BOT_NAME = 'scrapy_app'
 
 SPIDER_MODULES = ['scrapy_app.spiders']

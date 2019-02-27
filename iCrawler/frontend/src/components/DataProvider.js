@@ -4,7 +4,7 @@ class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'https://psicologiaymente.com/cultura/webs-cine-ver-peliculas-gratis',
+          url: 'https://listas.20minutos.es/lista/las-5-mejores-paginas-para-ver-peliculas-online-412772/',
           crawlingStatus: null,
           data: null,
           taskID: null,
@@ -87,8 +87,12 @@ class DataProvider extends Component {
   }
 
   render() {
-    //const status = this.state.crawlingStatus;
-    return <p>hola</p>;
+    const status = this.state.crawlingStatus;
+    const data=this.state.data;
+    if (data)
+      return <p>{data}</p>
+    else
+      return <p>{status}</p>
   }
 
 
