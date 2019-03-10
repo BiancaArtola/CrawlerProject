@@ -2,6 +2,7 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import scrapy
+from scrapy.selector import Selector
 
 class IcrawlerSpider(CrawlSpider):
     name = 'icrawler'
@@ -11,6 +12,7 @@ class IcrawlerSpider(CrawlSpider):
         # To make everything dynamic, we need to override them inside __init__ method
         self.url = kwargs.get('url')
         self.domain = kwargs.get('domain')
+        print()
         self.start_urls = [self.url]
         self.allowed_domains = [self.domain]
 
@@ -22,6 +24,9 @@ class IcrawlerSpider(CrawlSpider):
     def parse_item(self, response):
         # You can tweak each crawled page here
         # Don't forget to return an object.
+        navidad=response.xpath('//a[@class="nav-logo"]/text()').get()
         i = {}
         i['url'] = response.url
+        i['data'] = navidad
+        #print("en la url "+i['url']+" saque "+i['data'])
         return i

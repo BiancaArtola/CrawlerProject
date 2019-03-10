@@ -11,6 +11,7 @@ from scrapyd_api import ScrapydAPI
 from main.models import ScrapyItem
 from main.serializers import ScrapyItemSerializer
 from rest_framework import generics
+import json
 
 # connect scrapyd service
 scrapyd = ScrapydAPI('http://localhost:6800')
@@ -43,6 +44,7 @@ def crawl(request):
         
         domain = urlparse(url).netloc # parse the url and extract the domain
         unique_id = str(uuid4()) # create a unique ID. 
+        print("EL UNIQUE ES "+unique_id)
         
         # This is the custom settings for scrapy spider. 
         # We can send anything we want to use it inside spiders and pipelines. 
@@ -61,7 +63,7 @@ def crawl(request):
 
         task = scrapyd.schedule('default', 'icrawler', 
             settings=settings, url=url, domain=domain)
-        print("dhkaj")
+        
         return JsonResponse({'task_id': task, 'unique_id': unique_id, 'status': 'started' })
 
     # Get requests are for getting result of a specific crawling task
@@ -85,8 +87,15 @@ def crawl(request):
         if status == 'finished':
             try:
                 # this is the unique_id that we created even before crawling started.
-                item = ScrapyItem.objects.get(unique_id=unique_id) 
-                return JsonResponse({'data': item.to_dict['data']})
+                item = ScrapyItem.objects.filter(unique_id=unique_id)
+                lista= list(item)
+                defi=[]
+                for i in lista:
+                    print(i.to_dict)
+                    defi.append(i.to_dict)
+                resp= JsonResponse({'data': json.dumps(defi)})
+                print("LA RESPUESTA ES "+str(resp))
+                return resp
             except Exception as e:
                 return JsonResponse({'error': str(e)})
         else:

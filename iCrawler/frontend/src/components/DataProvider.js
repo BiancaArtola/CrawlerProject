@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'https://www.labrujula24.com/',
+          url: 'https://articulo.mercadolibre.com.ar/MLA-672354759-impresora-multifuncion-hp-deskjet-ink-advantage-2675-_JM?quantity=1',
           crawlingStatus: null,
           data: null,
           taskID: null,
@@ -87,10 +88,14 @@ class DataProvider extends Component {
   }
 
   render() {
+    alert("estoy en el render");
     const status = this.state.crawlingStatus;
     const data=this.state.data;
     if (data)
+    {
+      alert("ENTRE A DATAAAA");
       return <p>{data}</p>
+    }
     else
       return <p>{status}</p>
   }
