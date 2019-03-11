@@ -51,8 +51,8 @@
 		  	<!-- Columna numero 1  -->
 		    <div class="col-sm">	  
 		     <div class="form-group">
-			    <select class="custom-select" required>
-			      <option value="">Seleccione una ciudad</option>
+			    <select class="custom-select" required id="ciudad">
+			      <option value="error">Seleccione una ciudad</option>
 			      <option value="1">Mar del plata</option>
 			      <option value="2">Monte hermoso</option>
 			    </select>
@@ -62,21 +62,21 @@
 		    <!-- Columna numero 2 -->
 		    <div class="col-sm">
 		      <form action="/action_page.php">
-			  <b>Fecha llegada:</b> <input type="date" name="llegada" >
+			  <b>Fecha llegada:</b> <input type="date" id="llegada" >
 		
 			</form>
 		    </div>
 		    <!-- Columna numero 3  -->
 		    <div class="col-sm">
 		      <form action="/action_page.php">
-			  <b>Fecha salida:</b> <input type="date" name="salida">
+			  <b>Fecha salida:</b> <input type="date" id="salida">
 			  
 			</form>
 		    </div>
 		  </div>
 		</div>
       
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Buscar</a> 
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services" onclick="obtenerInformacion()">Buscar</a> 
   
          <div class="container">
           <div id="app" class="columns"></div>
@@ -112,6 +112,9 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static "js/agency.min.js" %}"></script>
+
+{% load static from staticfiles %}
+  <script src="{% static "components/App.js" %}"></script>
 
   <!--   React-bootstrap -->
 <!--   <script src="https://unpkg.com/react/umd/react.production.js" crossorigin />

@@ -122,3 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = (
+#     # location of your application, should not be public web accessible 
+#     '/src/',
+# )

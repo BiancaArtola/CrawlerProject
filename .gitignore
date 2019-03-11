@@ -80,5 +80,6 @@ typings/
 .serverless/
 
 # FuseBox cache
+*.cpython-37.pyc
 *.pyc
 *.db

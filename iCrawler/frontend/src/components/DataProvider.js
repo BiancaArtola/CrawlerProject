@@ -47,7 +47,6 @@ class DataProvider extends Component {
   }
 
   componentWillUnmount() {
-
       // i create this.statusInterval inside constructor method
       // So clear it anyway on page reloads or 
       clearInterval(this.statusInterval)
