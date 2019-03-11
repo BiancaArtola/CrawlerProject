@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-
 class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'https://www.google.com',
+          url: 'https://articulo.mercadolibre.com.ar/MLA-672354759-impresora-multifuncion-hp-deskjet-ink-advantage-2675-_JM?quantity=1',
           crawlingStatus: null,
           data: null,
           taskID: null,
           uniqueID: null
       }
       this.statusInterval = 1
-      alert("chau");
   }
 
   static propTypes = {
@@ -22,7 +20,6 @@ class DataProvider extends Component {
   };
   
   componentDidMount = () => {
-    alert("estoy en handle");
     if (!this.state.url) return false;
 
     // send a post request to client when form button clicked
@@ -89,10 +86,13 @@ class DataProvider extends Component {
   }
 
   render() {
+    alert("estoy en el render");
     const status = this.state.crawlingStatus;
     const data=this.state.data;
     if (data)
+    {
       return <p>{data}</p>
+    }
     else
       return <p>{status}</p>
   }
