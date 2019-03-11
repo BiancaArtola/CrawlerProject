@@ -1,20 +1,130 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+<html lang="en">
 
-  <title>Django DRF - React : Quickstart - Valentino G. - www.valentinog.com</title>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Alquileres en Argentina</title>
+
+  <!-- Bootstrap core CSS -->
+    {% load static %}
+  <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static "vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static "css/agency.min.css" %}" rel="stylesheet">
+<!-- 
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+  integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+  crossorigin="anonymous"
+/> -->
+
+  <!--  Icon for this template -->
+  <link rel="icon" type="image/png" href="{% static "img/ubicacion.png" %}" />
+
 </head>
-<body>
-  <section class="section">
+
+<body id="page-top">
+
+
+  <!-- Header -->
+  <header class="masthead">
     <div class="container">
-          <div id="app" class="columns"><!-- React --></div>
+      <div class="intro-text">
+        <div class="intro-lead-in">Bienvenido a nuestra web!</div>
+        <div class="intro-heading text-uppercase">Busque su mejor alquiler:</div>  
+
+        <div class="container">
+		  <div class="row">
+		  	<!-- Columna numero 1  -->
+		    <div class="col-sm">	  
+		     <div class="form-group">
+			    <select class="custom-select" required>
+			      <option value="">Seleccione una ciudad</option>
+			      <option value="1">Mar del plata</option>
+			      <option value="2">Monte hermoso</option>
+			    </select>
+			    <div class="invalid-feedback">Debe seleccionar una ciudad</div>
+			  </div> 
+		    </div>
+		    <!-- Columna numero 2 -->
+		    <div class="col-sm">
+		      <form action="/action_page.php">
+			  <b>Fecha llegada:</b> <input type="date" name="llegada" >
+		
+			</form>
+		    </div>
+		    <!-- Columna numero 3  -->
+		    <div class="col-sm">
+		      <form action="/action_page.php">
+			  <b>Fecha salida:</b> <input type="date" name="salida">
+			  
+			</form>
+		    </div>
+		  </div>
+		</div>
+      
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Buscar</a> 
+  
+         <div class="container">
+          <div id="app" class="columns"></div>
+        </div> 
+      </div>
     </div>
-  </section>
+  </header>
+
+
+
+  <!-- Footer -->
+ <footer>
+    <div class="container">
+    	<span class="copyright">Copyright &copy; Agustin Streitenberger - Bianca Artola</span>
+    </div> 
+  </footer>
+
+
+  <!-- Conexion crawler -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="{% static "frontend/main.js" %}"></script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static "vendor/jquery-easing/jquery.easing.min.js" %}"></script>
+
+  <!-- Contact form JavaScript -->
+  <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
+  <script src="{% static "js/contact_me.js" %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static "js/agency.min.js" %}"></script>
+
+  <!--   React-bootstrap -->
+<!--   <script src="https://unpkg.com/react/umd/react.production.js" crossorigin />
+  <script
+   src="https://unpkg.com/react-dom/umd/react-dom.production.js"
+   crossorigin
+  />
+  <script
+   src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+   crossorigin
+  />
+  <script>var Alert = ReactBootstrap.Alert;</script> -->
+
 </body>
-{% load static %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="{% static "frontend/main.js" %}"></script>
+
 </html>

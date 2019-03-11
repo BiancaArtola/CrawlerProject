@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+
 class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'https://www.labrujula24.com/',
+          url: 'https://www.google.com',
           crawlingStatus: null,
           data: null,
           taskID: null,
