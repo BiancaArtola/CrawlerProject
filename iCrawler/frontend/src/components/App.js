@@ -14,8 +14,7 @@ const App = () => (
                 render={data => <Table data={data} />} />
 );
 
-function listener(){	
-	alert("hola");
+function listener(){
 	const wrapper = document.getElementById("app");
     wrapper ? ReactDOM.render(<App />, wrapper) : null;
 }

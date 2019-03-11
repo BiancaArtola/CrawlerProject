@@ -86,7 +86,6 @@ class DataProvider extends Component {
   }
 
   render() {
-    alert("estoy en el render");
     const status = this.state.crawlingStatus;
     const data=this.state.data;
     if (data)
