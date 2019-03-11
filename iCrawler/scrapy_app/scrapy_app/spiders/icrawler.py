@@ -24,8 +24,8 @@ class IcrawlerSpider(CrawlSpider):
     def parse_item(self, response):
         # You can tweak each crawled page here
         # Don't forget to return an object.
-        navidad=response.xpath('//a[@class="nav-logo"]/text()').get()
-        i = {}
-        i['url'] = response.url
-        i['data'] = navidad
-        return i
+        informacion = response.xpath('//a[@class="nav-logo"]/text()').get()
+        arreglo = {}
+        arreglo['url'] = response.url
+        arreglo['data'] = informacion
+        return arreglo
