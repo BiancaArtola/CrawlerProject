@@ -15,6 +15,7 @@ class ScrapyAppPipeline(object):
 
     def close_spider(self, spider):
         # And here we are saving our crawled data with django models.
+        print("la longitud es"+str(len(self.urls)))
         for data,url in zip(self.datas,self.urls):
             item = ScrapyItem()
             item.unique_id = self.unique_id

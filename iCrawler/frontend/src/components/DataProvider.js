@@ -5,7 +5,7 @@ class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'https://articulo.mercadolibre.com.ar/MLA-672354759-impresora-multifuncion-hp-deskjet-ink-advantage-2675-_JM?quantity=1',
+          url: 'http://www.rentalugar.com/alquileres-en-la-costa/mar-del-plata',
           crawlingStatus: null,
           data: null,
           taskID: null,

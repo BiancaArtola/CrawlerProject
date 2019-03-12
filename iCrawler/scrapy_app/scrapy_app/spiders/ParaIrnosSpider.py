@@ -4,8 +4,8 @@ from scrapy.spiders import CrawlSpider, Rule
 import scrapy
 from scrapy.selector import Selector
 
-class IcrawlerSpider(CrawlSpider):
-    name = 'icrawler'
+class ParaIrnosSpider(CrawlSpider):
+    name = 'parairnos'
 
     def __init__(self, *args, **kwargs):
         # We are going to pass these args from our django view.
@@ -16,17 +16,18 @@ class IcrawlerSpider(CrawlSpider):
         self.start_urls = [self.url]
         self.allowed_domains = [self.domain]
 
-        IcrawlerSpider.rules = [
-           Rule(LinkExtractor(unique=True), callback='parse_item'),
+        ParaIrnosSpider.rules = [
+           Rule(LinkExtractor(allow =(), restrict_xpaths = ('//ul[@class="pagination pagination-blue pagination-lg"]/li[last()]/a'))),
+           Rule(LinkExtractor(allow = (), restrict_xpaths = ('//div[@class="results-content"]/div/a')),callback= 'parse_item', follow=False)
         ]
-        super(IcrawlerSpider, self).__init__(*args, **kwargs)
+        super(ParaIrnosSpider, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
         # You can tweak each crawled page here
         # Don't forget to return an object.
         informacion = response.xpath('//ul[@class="pagination pagination-blue pagination-lg"]/li[last()]/a/@href').get()
-        print("El href es "+informacion)
         arreglo = {}
         arreglo['url'] = response.url
-        arreglo['data'] = informacion
+        print(response.url)
+        arreglo['data'] = "hola"
         return arreglo
