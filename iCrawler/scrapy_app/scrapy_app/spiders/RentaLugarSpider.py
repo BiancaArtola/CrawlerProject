@@ -4,8 +4,8 @@ from scrapy.spiders import CrawlSpider, Rule
 import scrapy
 from scrapy.selector import Selector
 
-class AlquilerArgentinaSpider(CrawlSpider):
-    name = 'alquilerargentina'
+class RentaLugarSpider(CrawlSpider):
+    name = 'rentalugar'
 
     def __init__(self, *args, **kwargs):
         # We are going to pass these args from our django view.
@@ -16,12 +16,12 @@ class AlquilerArgentinaSpider(CrawlSpider):
         self.start_urls = [self.url]
         self.allowed_domains = [self.domain]
 
-        AlquilerArgentinaSpider.rules = [
+        RentaLugarSpider.rules = [
            #Rule(LinkExtractor(allow =(), restrict_xpaths = ('//ul[@class="pagination"]/li[last()]/a'))),
            Rule(LinkExtractor(allow = (), restrict_xpaths = ('//a[@class="product-image"]'))
             ,callback= 'parse_item', follow=False)
         ]
-        super(AlquilerArgentinaSpider, self).__init__(*args, **kwargs)
+        super(RentaLugarSpider, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
         # You can tweak each crawled page here

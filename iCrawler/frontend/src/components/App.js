@@ -7,7 +7,7 @@ const botonBuscar = <a class="btn btn-primary btn-xl text-uppercase js-scroll-tr
 
 const el= <button onClick={listener}>Click me</button>
 const wrapper = document.getElementById("app");
-wrapper ? ReactDOM.render(el, wrapper) : null;
+wrapper ? ReactDOM.render(botonBuscar, wrapper) : null;
 
 function obtenerInformacion(){
 	//Si ciudad=1 o ciudad=2 selecciono Monte hermoso o mar del plata, si ciudad="" no selecciono nada
@@ -15,12 +15,19 @@ function obtenerInformacion(){
 	var llegada = document.getElementById('llegada').value;
 	var salida = document.getElementById('salida').value;
 
-	if (ciudad="error")
+	if (ciudad=="error")
 		alert("Debe seleccionar una ciudad.");	
+	else{
+		var urlParairnos = armarUrl("https://www.parairnos.com/alquileres-en-", ciudad);
+		var urlRentalugar = armarUrl("http://www.rentalugar.com/alquileres-en-la-costa/", ciudad);	
+		if (ciudad == "monte-hermoso")
+			urlRentalugar = armarUrl(urlRentalugar, "-buenos-aires");
+		alert(urlParairnos+" la otra " + urlRentalugar);	
+	}
+}
 
-	alert("Ciudad "+ciudad);
-	alert("Llegada "+llegada);
-	alert("Salida "+salida);
+function armarUrl(url, ciudad){
+	return url.concat(ciudad);
 }
 
 const App = () => (
