@@ -7,7 +7,7 @@ const botonBuscar = <a class="btn btn-primary btn-xl text-uppercase js-scroll-tr
 
 const el= <button onClick={listener}>Click me</button>
 const wrapper = document.getElementById("app");
-wrapper ? ReactDOM.render(botonBuscar, wrapper) : null;
+wrapper ? ReactDOM.render(el, wrapper) : null;
 
 function obtenerInformacion(){
 	//Si ciudad=1 o ciudad=2 selecciono Monte hermoso o mar del plata, si ciudad="" no selecciono nada

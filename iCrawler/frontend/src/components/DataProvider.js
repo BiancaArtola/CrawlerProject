@@ -25,14 +25,15 @@ class DataProvider extends Component {
     // send a post request to client when form button clicked
     // django response back with task_id and unique_id.
     // We have created them in views.py file, remember?
-    $.post('/api/crawl/', { url: this.state.url }, resp => {
+    $.post('/api/crawl/', { url: this.state.url , url2: 'hola'}, resp => {
         if (resp.error) {
             alert(resp.error)
             return
         }
         // Update the state with new task and unique id
         this.setState({
-            taskID: resp.task_id,
+            taskID1: resp.task_id1,
+            taskID2: resp.task_id2,
             uniqueID: resp.unique_id,
             crawlingStatus: resp.status
         }, () => {
@@ -56,7 +57,7 @@ class DataProvider extends Component {
       // this method do only one thing.
       // Making a request to server to ask status of crawling job
       $.get('/api/crawl/',
-            { task_id: this.state.taskID, unique_id: this.state.uniqueID }, resp => {
+            { task_id1: this.state.taskID1,task_id2: this.state.taskID2, unique_id: this.state.uniqueID }, resp => {
           if (resp.data) {
               // If response contains a data array
               // That means crawling completed and we have results here
