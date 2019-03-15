@@ -25,9 +25,13 @@ class ParaIrnosSpider(CrawlSpider):
     def parse_item(self, response):
         # You can tweak each crawled page here
         # Don't forget to return an object.
-        informacion = response.xpath('//ul[@class="pagination pagination-blue pagination-lg"]/li[last()]/a/@href').get()
+        imagen = response.xpath('//div[@class="fotorama"]/a/@href').get()
+        #titulo= response.xpath('//h1[@itemprop="name"]/text()').get()
+        #direccion= response.xpath('//h1[@itemprop="name"]/text()').get()
+        print("IMAGEN: "+imagen)
+        #print("TITULO: "+titulo)
+        #print("DIRE: "+direccion)
         arreglo = {}
         arreglo['url'] = response.url
-        print(response.url)
         arreglo['data'] = "hola"
         return arreglo

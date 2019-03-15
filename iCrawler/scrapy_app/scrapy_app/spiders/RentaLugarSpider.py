@@ -26,9 +26,10 @@ class RentaLugarSpider(CrawlSpider):
     def parse_item(self, response):
         # You can tweak each crawled page here
         # Don't forget to return an object.
-        #informacion = response.xpath('//ul[@class="pagination pagination-blue pagination-lg"]/li[last()]/a/@href').get()
+        
+        imagen = response.xpath('//div[@class="product-img-box"]/div/div/div/a/@href').get()
+        print("RENT "+imagen)
         arreglo = {}
         arreglo['url'] = response.url
-        print(response.url)
         arreglo['data'] = "hola"
         return arreglo
