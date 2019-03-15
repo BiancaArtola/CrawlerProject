@@ -28,8 +28,12 @@ class RentaLugarSpider(CrawlSpider):
         # Don't forget to return an object.
         
         imagen = response.xpath('//div[@class="product-img-box"]/div/div/div/a/@href').get()
-        print("RENT "+imagen)
+        titulo = response.xpath('//div[@class="productName"]/h1/text()').get()
+        direccion = response.xpath('(//div[@class="address"]/p/text())[2]').get()
+        #print("RENT "+imagen)
         arreglo = {}
+        arreglo['imagen']=imagen
+        arreglo['titulo']=titulo
         arreglo['url'] = response.url
-        arreglo['data'] = "hola"
+        arreglo['direccion'] = direccion
         return arreglo

@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from scrapyd_api import ScrapydAPI
 #from main.utils import URLUtil
 from main.models import ScrapyItem
+from main.models import Propiedad
 from main.serializers import ScrapyItemSerializer
 from rest_framework import generics
 import json
@@ -91,12 +92,13 @@ def crawl(request):
         if (status1 == 'finished') and (status2 == 'finished'):
             try:
                 # this is the unique_id that we created even before crawling started.
-                item = ScrapyItem.objects.filter(unique_id=unique_id)
+                item = Propiedad.objects.filter(unique_id=unique_id)
                 lista= list(item)
                 defi=[]
                 for i in lista:
                     defi.append(i.to_dict)
                 resp= JsonResponse({'data': json.dumps(defi)})
+                #print(resp)
                 return resp
             except Exception as e:
                 return JsonResponse({'error': str(e)})

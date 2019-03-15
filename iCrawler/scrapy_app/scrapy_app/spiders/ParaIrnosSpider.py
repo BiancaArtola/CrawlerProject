@@ -26,12 +26,14 @@ class ParaIrnosSpider(CrawlSpider):
         # You can tweak each crawled page here
         # Don't forget to return an object.
         imagen = response.xpath('//div[@class="fotorama"]/a/@href').get()
-        #titulo= response.xpath('//h1[@itemprop="name"]/text()').get()
-        #direccion= response.xpath('//h1[@itemprop="name"]/text()').get()
-        print("IMAGEN: "+imagen)
+        titulo= response.xpath('//h1[@itemprop="name"]/text()').get()
+        direccion= response.xpath('//span[@itemprop="streetAddress"]/text()').get()
+        #print("IMAGEN: "+imagen)
         #print("TITULO: "+titulo)
         #print("DIRE: "+direccion)
         arreglo = {}
+        arreglo['imagen']=imagen
+        arreglo['titulo']=titulo
         arreglo['url'] = response.url
-        arreglo['data'] = "hola"
+        arreglo['direccion'] = direccion
         return arreglo
