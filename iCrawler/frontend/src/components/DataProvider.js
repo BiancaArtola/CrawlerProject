@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+
 class DataProvider extends Component {
   constructor(props) {
       super(props)
@@ -9,14 +10,17 @@ class DataProvider extends Component {
           crawlingStatus: null,
           data: null,
           taskID: null,
-          uniqueID: null
+          uniqueID: null,
       }
       this.statusInterval = 1
   }
 
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
-    render: PropTypes.func.isRequired
+    render: PropTypes.func.isRequired,
+    render2: PropTypes.func.isRequired,
+    urlParairnosDP: PropTypes.string.isRequired,
+    urlRentalDP: PropTypes.string.isRequired
   };
   
   componentDidMount = () => {
@@ -25,7 +29,7 @@ class DataProvider extends Component {
     // send a post request to client when form button clicked
     // django response back with task_id and unique_id.
     // We have created them in views.py file, remember?
-    $.post('/api/crawl/', { url: this.state.url , url2: 'hola'}, resp => {
+    $.post('/api/crawl/', { url: this.props.urlParaIrnosDP , url2: this.props.urlRentalDP }, resp => {
         if (resp.error) {
             alert(resp.error)
             return
@@ -87,15 +91,15 @@ class DataProvider extends Component {
 
   render() {
     const status = this.state.crawlingStatus;
-    const data=this.state.data;
+    const data= JSON.parse(this.state.data);
+    const data2= "algo";
     if (data)
     {
-      return <p>{data}</p>
+      return this.props.render(data);
     }
     else
-      return <p>{status}</p>
+      return this.props.render2(data2);
   }
-
 
 }
 export default DataProvider;

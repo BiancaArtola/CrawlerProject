@@ -38,21 +38,23 @@
 
 <body id="page-top">
 
-
+  <div id="ppal">
   <!-- Header -->
-  <header class="masthead">
+  <header class="masthead" id="header">
+    <h28>
     <div class="container">
       <div class="intro-text">
         <div class="intro-lead-in">Bienvenido a nuestra web!</div>
         <div class="intro-heading text-uppercase">Busque su mejor alquiler:</div>  
-
+          
         <div class="container">
 		  <div class="row">
 		  	<!-- Columna numero 1  -->
 		    <div class="col-sm">	  
 		     <div class="form-group">
+          <b> Ciudad </b>
 			    <select class="custom-select" required id="ciudad">
-			      <option value="error">Seleccione una ciudad</option>
+			      
 			      <option value="mar-del-plata">Mar del plata</option>
 			      <option value="monte-hermoso">Monte hermoso</option>
             <option value="villa-gesell">Villa gesell</option>
@@ -74,13 +76,33 @@
 		    <!-- Columna numero 3  -->
 		    <div class="col-sm">
 		      <form action="/action_page.php">
-			  <b>Fecha salida:</b> <input type="date" id="salida">
-			  
-			</form>
+			       <b>Fecha salida:</b> <input type="date" id="salida">
+          </form>
 		    </div>
+
+         <!-- Columna numero 4 -->
+        <div class="col-sm">    
+         <div class="form-group">
+          <b> Cantidad de personas </b>
+          <select class="custom-select" required id="cantPersonas">
+          
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div> 
+        </div>
+
 		  </div>
 		</div>
       
+      <hr>
+
         <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services" onclick="obtenerInformacion()">Buscar</a> 
   
          <div class="container">
@@ -88,8 +110,10 @@
         </div> 
       </div>
     </div>
-  </header>
 
+  </h28>
+  </header>
+</div>
 
 
   <!-- Footer -->

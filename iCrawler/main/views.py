@@ -33,20 +33,25 @@ def is_valid_url(url):
 def crawl(request):
     # Post requests are for new crawling tasks
     if request.method == 'POST':
+        urlParaIrnos = request.POST.get('url', None) 
+        urlRental = request.POST.get('url2', None)
 
-
-        url = request.POST.get('url', None) # take url comes from client. (From an input may be?)
-        print("la 2 es "+request.POST.get('url2',None))
-        if not url:
+        if not urlParaIrnos:
             return JsonResponse({'error': 'Missing  args'})
         
-        if not is_valid_url(url):
+        if not is_valid_url(urlParaIrnos):
             return JsonResponse({'error': 'URL is invalid'})
         
-        domain = urlparse(url).netloc # parse the url and extract the domain
+        if not urlRental:
+            return JsonResponse({'error': 'Missing  args'})
+        
+        if not is_valid_url(urlRental):
+            return JsonResponse({'error': 'URL is invalid'})
+
+        domainParaIrnos = urlparse(urlParaIrnos).netloc # parse the url and extract the domain
+        domainRental = urlparse(urlRental).netloc
+
         unique_id = str(uuid4()) # create a unique ID. 
-        print(domain)
-        print(url)
         
         # This is the custom settings for scrapy spider. 
         # We can send anything we want to use it inside spiders and pipelines. 
@@ -62,10 +67,10 @@ def crawl(request):
         # This returns a ID which belongs and will be belong to this task
         # We are goint to use that to check task's status.
 
-        task1 = scrapyd.schedule('default', 'rentalugar', 
-            settings=settings, url=url, domain=domain)
-        task2 = scrapyd.schedule('default', 'parairnos', 
-            settings=settings, url='https://www.parairnos.com/alquileres-en-monte-hermoso', domain='www.parairnos.com')
+        task1 = scrapyd.schedule('default', 'parairnos', 
+            settings=settings, url=urlParaIrnos, domain=domainParaIrnos)
+        task2 = scrapyd.schedule('default', 'rentalugar', 
+            settings=settings, url=urlRental, domain=domainRental)
         
         return JsonResponse({'task_id1': task1,'task_id2': task2, 'unique_id': unique_id, 'status': 'started' })
 
