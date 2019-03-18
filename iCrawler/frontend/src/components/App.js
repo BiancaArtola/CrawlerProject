@@ -11,6 +11,9 @@ wrapper ? ReactDOM.render(botonBuscar, wrapper) : null;
 var urlParairnos = "";
 var urlRentalugar = "";
 
+const urlBaseParaIrnos = "https://www.parairnos.com/alquileres-en-";
+const urlBaseRental = "http://www.rentalugar.com/alquileres-en-la-costa/";
+
 function obtenerInformacion(){
 	var ciudad = document.getElementById('ciudad').value;
 	var llegada = document.getElementById('llegada').value;
@@ -18,21 +21,81 @@ function obtenerInformacion(){
 	var cantPersonas = document.getElementById('cantPersonas').value;
 
 	var validaFecha = chequeoFechas(llegada, salida);
-	if (validaFecha == 2) {
+
+	var hayPersonas = (cantPersonas!= "");
+
+	if (validaFecha == 0 && hayPersonas){
+		urlParairnos = armarUrlSinFechaParaIrnos(ciudad, cantPersonas);
+		urlRentalugar = armarUrlSinFechaRental(ciudad, cantPersonas);
+	}
+	else if (validaFecha == 0 && !hayPersonas){
+		urlParairnos = armarUrlParaIrnosBasica(ciudad);
+		urlRentalugar = armarUrlRentalBasica(ciudad);
+	}
+	else if (validaFecha == 2) {
 		var llegadaPI = rearmarFecha(llegada);
 		var salidaPI = rearmarFecha(salida);
 
-	 	urlParairnos = armarUrlParaIrnos("https://www.parairnos.com/alquileres-en-", ciudad, cantPersonas, llegadaPI, salidaPI);
-		urlRentalugar = armarUrlRental("http://www.rentalugar.com/alquileres-en-la-costa/", ciudad, cantPersonas, llegada, salida);	
-
-		const wrapper = document.getElementById("ppal");
-	    wrapper ? ReactDOM.render(<App />, wrapper) : null;	
+		if (hayPersonas){
+		 	urlParairnos = armarUrlParaIrnosCompleta(ciudad, cantPersonas, llegadaPI, salidaPI);
+			urlRentalugar = armarUrlRentalCompleta(ciudad, cantPersonas, llegada, salida);	
+		}
+		else {
+			urlParairnos = armarUrlParaIrnosConFechaSinPersonas(ciudad, llegadaPI, salidaPI);
+			urlRentalugar = armarUrlRentalConFechaSinPersonas(ciudad, llegada, salida);
+		}
  	}
- 	else
- 		alert("no sigas");
+ 	else{
+ 		alert("Debe ingresar correctamente los datos");
+ 		return ;
+ 	}
+
+	const wrapper = document.getElementById("ppal");
+	wrapper ? ReactDOM.render(<App />, wrapper) : null;	
+}
+
+function armarUrlParaIrnosConFechaSinPersonas(ciudad, llegada, salida){
+	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
+	var urlFinal = urlConCiudad+"-del-"+llegada+"-al-"+salida;
+	return urlFinal;
+}
+
+function armarUrlRentalConFechaSinPersonas(ciudad, llegada, salida){
+	var urlConCiudad = urlBaseRental.concat(ciudad);
+	if (ciudad == "monte-hermoso")
+		urlRentalugar = urlRentalugar.concat("-buenos-aires");
+	var urlFecha = urlConCiudad+"/?&from="+llegada+"&to="+salida;
+	return urlFecha;
+}
+
+function armarUrlParaIrnosBasica(ciudad){
+	return urlBaseParaIrnos.concat(ciudad);
+}
+
+function armarUrlRentalBasica(ciudad){
+	return urlBaseRental.concat(ciudad);
+}
+
+function armarUrlSinFechaParaIrnos(ciudad, cantPersonas){
+	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
+	var urlFinal= urlConCiudad+"-para-"+cantPersonas+"-personas";
+	return urlFinal;
+}
+
+function armarUrlSinFechaRental(ciudad, cantPersonas){
+	var urlConCiudad = urlBaseRental.concat(ciudad);
+	if (ciudad == "monte-hermoso")
+		urlRentalugar = urlRentalugar.concat("-buenos-aires");
+	var urlFinal = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad(cantPersonas);
+	return urlFinal;
 }
 
 function chequeoFechas(llegada, salida){
+	if (llegada == "" && salida == "")
+		return 0;
+	else if ((llegada == "" && salida != "") || (llegada != "" && salida == ""))
+		return 1	
+
 	var validaLlegada = esAnteriorAHoy(llegada);
 	if (validaLlegada == 2){
 		var validaSalida = esAnteriorAHoy(salida);	
@@ -99,15 +162,15 @@ function rearmarFecha(fecha){
 }
 
 
-function armarUrlParaIrnos(url, ciudad, cantPersonas, llegada, salida){
-	var urlConCiudad= url.concat(ciudad);
+function armarUrlParaIrnosCompleta(ciudad, cantPersonas, llegada, salida){
+	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
 	var urlCiudadPersonas= urlConCiudad+"-para-"+cantPersonas+"-personas-";
 	var urlFinal = urlCiudadPersonas+"del-"+llegada+"-al-"+salida;
 	return urlFinal;
 }
 
-function armarUrlRental(url, ciudad, cantPersonas, llegada, salida){
-	var urlConCiudad = url.concat(ciudad);
+function armarUrlRentalCompleta(ciudad, cantPersonas, llegada, salida){
+	var urlConCiudad = urlBaseRental.concat(ciudad);
 	if (ciudad == "monte-hermoso")
 		urlRentalugar = urlRentalugar.concat("-buenos-aires");
 	var urlCapacidad = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad(cantPersonas);
