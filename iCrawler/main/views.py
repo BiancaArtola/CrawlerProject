@@ -36,6 +36,8 @@ def crawl(request):
         urlParaIrnos = request.POST.get('url', None) 
         urlRental = request.POST.get('url2', None)
 
+        print("LLegó: "+urlParaIrnos+" "+urlRental)
+
         if not urlParaIrnos:
             return JsonResponse({'error': 'Missing  args'})
         

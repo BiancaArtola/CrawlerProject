@@ -8,8 +8,8 @@ const botonBuscar = <a class="btn btn-primary btn-xl text-uppercase js-scroll-tr
 const wrapper = document.getElementById("app");
 wrapper ? ReactDOM.render(botonBuscar, wrapper) : null;
 
-var urlParairnos = "";
-var urlRentalugar = "";
+let urlParairnos = "";
+let urlRentalugar = "";
 
 const urlBaseParaIrnos = "https://www.parairnos.com/alquileres-en-";
 const urlBaseRental = "http://www.rentalugar.com/alquileres-en-la-costa/";
@@ -190,6 +190,7 @@ function armarArregloCapacidad(cantPersonas){
 }
 
 const App = () => (
+
   <DataProvider endpoint="api/scrap/" 
                 render={data => <RentalPage data={data} />}
                 render2={data2 => <WaitPage data2={data2} />} 
