@@ -14,35 +14,43 @@ let urlRentalugar = "";
 const urlBaseParaIrnos = "https://www.parairnos.com/alquileres-en-";
 const urlBaseRental = "http://www.rentalugar.com/alquileres-en-la-costa/";
 
-function obtenerInformacion(){
-	var ciudad = document.getElementById('ciudad').value;
-	var llegada = document.getElementById('llegada').value;
-	var salida = document.getElementById('salida').value;
-	var cantPersonas = document.getElementById('cantPersonas').value;
+var ciudad = "";
+var llegada = "";
+var salida = "";
+var cantPersonas = "";
 
-	var validaFecha = chequeoFechas(llegada, salida);
+export{ciudad, llegada, salida, cantPersonas};
+
+export default function obtenerInformacion(){
+	alert(document.title);
+	ciudad = document.getElementById('ciudad').value;
+	llegada = document.getElementById('llegada').value;
+	salida = document.getElementById('salida').value;
+	cantPersonas = document.getElementById('cantPersonas').value;
+
+	var validaFecha = chequeoFechas();
 
 	var hayPersonas = (cantPersonas!= "");
 
 	if (validaFecha == 0 && hayPersonas){
-		urlParairnos = armarUrlSinFechaParaIrnos(ciudad, cantPersonas);
-		urlRentalugar = armarUrlSinFechaRental(ciudad, cantPersonas);
+		urlParairnos = armarUrlSinFechaParaIrnos();
+		urlRentalugar = armarUrlSinFechaRental();
 	}
 	else if (validaFecha == 0 && !hayPersonas){
-		urlParairnos = armarUrlParaIrnosBasica(ciudad);
-		urlRentalugar = armarUrlRentalBasica(ciudad);
+		urlParairnos = armarUrlParaIrnosBasica();
+		urlRentalugar = armarUrlRentalBasica();
 	}
 	else if (validaFecha == 2) {
 		var llegadaPI = rearmarFecha(llegada);
 		var salidaPI = rearmarFecha(salida);
 
 		if (hayPersonas){
-		 	urlParairnos = armarUrlParaIrnosCompleta(ciudad, cantPersonas, llegadaPI, salidaPI);
-			urlRentalugar = armarUrlRentalCompleta(ciudad, cantPersonas, llegada, salida);	
+		 	urlParairnos = armarUrlParaIrnosCompleta(llegadaPI, salidaPI);
+			urlRentalugar = armarUrlRentalCompleta();	
 		}
 		else {
-			urlParairnos = armarUrlParaIrnosConFechaSinPersonas(ciudad, llegadaPI, salidaPI);
-			urlRentalugar = armarUrlRentalConFechaSinPersonas(ciudad, llegada, salida);
+			urlParairnos = armarUrlParaIrnosConFechaSinPersonas(llegadaPI, salidaPI);
+			urlRentalugar = armarUrlRentalConFechaSinPersonas();
 		}
  	}
  	else{
@@ -54,43 +62,46 @@ function obtenerInformacion(){
 	wrapper ? ReactDOM.render(<App />, wrapper) : null;	
 }
 
-function armarUrlParaIrnosConFechaSinPersonas(ciudad, llegada, salida){
+function armarUrlParaIrnosConFechaSinPersonas(llegadaPI, salidaPI){
 	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
-	var urlFinal = urlConCiudad+"-del-"+llegada+"-al-"+salida;
+	var urlFinal = urlConCiudad+"-del-"+llegadaPI+"-al-"+salidaPI;
 	return urlFinal;
 }
 
-function armarUrlRentalConFechaSinPersonas(ciudad, llegada, salida){
+function armarUrlRentalConFechaSinPersonas(){
 	var urlConCiudad = urlBaseRental.concat(ciudad);
 	if (ciudad == "monte-hermoso")
-		urlRentalugar = urlRentalugar.concat("-buenos-aires");
+		urlConCiudad = urlConCiudad.concat("-buenos-aires");
 	var urlFecha = urlConCiudad+"/?&from="+llegada+"&to="+salida;
 	return urlFecha;
 }
 
-function armarUrlParaIrnosBasica(ciudad){
+function armarUrlParaIrnosBasica(){
 	return urlBaseParaIrnos.concat(ciudad);
 }
 
-function armarUrlRentalBasica(ciudad){
-	return urlBaseRental.concat(ciudad);
+function armarUrlRentalBasica(){
+	var urlConCiudad = urlBaseRental.concat(ciudad);
+	if (ciudad == "monte-hermoso")
+		urlConCiudad = urlConCiudad.concat("-buenos-aires");
+	return urlConCiudad;
 }
 
-function armarUrlSinFechaParaIrnos(ciudad, cantPersonas){
+function armarUrlSinFechaParaIrnos(){
 	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
 	var urlFinal= urlConCiudad+"-para-"+cantPersonas+"-personas";
 	return urlFinal;
 }
 
-function armarUrlSinFechaRental(ciudad, cantPersonas){
+function armarUrlSinFechaRental(){
 	var urlConCiudad = urlBaseRental.concat(ciudad);
 	if (ciudad == "monte-hermoso")
-		urlRentalugar = urlRentalugar.concat("-buenos-aires");
-	var urlFinal = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad(cantPersonas);
+		urlConCiudad = urlConCiudad.concat("-buenos-aires");
+	var urlFinal = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad();
 	return urlFinal;
 }
 
-function chequeoFechas(llegada, salida){
+function chequeoFechas(){
 	if (llegada == "" && salida == "")
 		return 0;
 	else if ((llegada == "" && salida != "") || (llegada != "" && salida == ""))
@@ -105,7 +116,7 @@ function chequeoFechas(llegada, salida){
 	return 1;		
 }
 
-function compararLlegadaySalida(llegada, salida){
+function compararLlegadaySalida(){
 	var fechaLlegada = new Date(llegada);
 
 	var AnoLlegada = fechaLlegada.getFullYear();
@@ -162,23 +173,23 @@ function rearmarFecha(fecha){
 }
 
 
-function armarUrlParaIrnosCompleta(ciudad, cantPersonas, llegada, salida){
+function armarUrlParaIrnosCompleta(llegadaPI, salidaPI){
 	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
 	var urlCiudadPersonas= urlConCiudad+"-para-"+cantPersonas+"-personas-";
-	var urlFinal = urlCiudadPersonas+"del-"+llegada+"-al-"+salida;
+	var urlFinal = urlCiudadPersonas+"del-"+llegadaPI+"-al-"+salidaPI;
 	return urlFinal;
 }
 
-function armarUrlRentalCompleta(ciudad, cantPersonas, llegada, salida){
+function armarUrlRentalCompleta(){
 	var urlConCiudad = urlBaseRental.concat(ciudad);
 	if (ciudad == "monte-hermoso")
 		urlRentalugar = urlRentalugar.concat("-buenos-aires");
-	var urlCapacidad = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad(cantPersonas);
+	var urlCapacidad = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad();
 	var urlFecha = urlCapacidad+"&from="+llegada+"&to="+salida;
 	return urlFecha;
 }
 
-function armarArregloCapacidad(cantPersonas){
+function armarArregloCapacidad(){
 	var numeroPrincipal = [262,261,260,259,258,257,256,255,254,253,252,251,250,249,248];
 	var stringCapacidad = "";
 	for (var i=cantPersonas-1; i<15; i++)
@@ -190,7 +201,6 @@ function armarArregloCapacidad(cantPersonas){
 }
 
 const App = () => (
-
   <DataProvider endpoint="api/scrap/" 
                 render={data => <RentalPage data={data} />}
                 render2={data2 => <WaitPage data2={data2} />} 

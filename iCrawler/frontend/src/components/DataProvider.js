@@ -29,7 +29,7 @@ class DataProvider extends Component {
     // send a post request to client when form button clicked
     // django response back with task_id and unique_id.
     // We have created them in views.py file, remember?
-    alert(this.props.urlParairnosDP);
+    
     $.post('/api/crawl/', { url: this.props.urlParairnosDP , url2: this.props.urlRentalDP }, resp => {
         if (resp.error) {
             alert(resp.error)

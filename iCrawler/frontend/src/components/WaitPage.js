@@ -8,7 +8,23 @@ const WaitPage = ({ data2 }) =>
     <p>Nothing to show</p>
   ) : (
     <div className="column">
-    	<h10>Estoy esperando q cargue la pagina</h10>
+    	  <header className="masthead" id="header">
+      <div className="container">
+        <div className="intro-text">
+          <div className="intro-lead-in">Estamos buscando los mejores alquileres...</div>
+          <div className="intro-heading text-uppercase">Espere unos segundos</div>  
+            <img src="../static/img/Carga.gif" alt="loading..." />
+          <div className="container">
+            <div className="row"></div>
+          </div>
+        </div>
+        
+        <div className="container">
+          <div id="app" className="columns"></div>
+        </div> 
+      </div>
+    
+      </header>
     </div>
   );
 
