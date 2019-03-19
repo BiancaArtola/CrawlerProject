@@ -3,18 +3,30 @@ import PropTypes from "prop-types";
 import key from "weak-key";
 import obtenerInformacion from "./App";
 import {ciudad, llegada, salida, cantPersonas} from "./App";
+//import {imgSize} from "./App"
+import { Component } from 'react'; 
+import { Form, FormControl, Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 const RentalPage = ({ data }) =>
   !data.length ? (
     <p>Nothing to show</p>
   ) : (
   <div className="column">
-      
+     
+    <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="#">Home</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="#features">Features</Nav.Link>
+      <Nav.Link href="#pricing">Pricing</Nav.Link>
+    </Nav>
+  </Navbar>  
+
+
    <section className="bg-light" id="portfolio">
     <div className="container">
       <div className="row">
-        <div className="col-lg-12 text-center">
-        
+        <div className="col-lg-12 text-center">      
           
               <div className="container">
                 <div className="row">
@@ -72,7 +84,8 @@ const RentalPage = ({ data }) =>
                 </div>
               </div>
 
-        
+          <br />
+          <br />
 
           <h2 class="section-heading text-uppercase">Alquileres en {ciudad}</h2>
           <h3 className="section-subheading text-muted">Se han encontrado <strong>{data.length} resultados</strong>.</h3>   

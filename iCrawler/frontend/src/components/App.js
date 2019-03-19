@@ -21,8 +21,16 @@ var cantPersonas = "";
 
 export{ciudad, llegada, salida, cantPersonas};
 
+/*
+export default function imgSize() {
+  let styles = {
+    width: '100%',
+    height: '15vw',
+  };
+}
+*/
+
 export default function obtenerInformacion(){
-	alert(document.title);
 	ciudad = document.getElementById('ciudad').value;
 	llegada = document.getElementById('llegada').value;
 	salida = document.getElementById('salida').value;

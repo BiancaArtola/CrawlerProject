@@ -65,6 +65,12 @@ section h3.section-subheading {
   }
 }
 
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
 .btn {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-weight: 700;
@@ -340,6 +346,9 @@ header.masthead .intro-text .intro-heading {
 
 .portfolio-modal .modal-content img {
   margin-bottom: 30px;
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
 }
 
 .portfolio-modal .modal-content button {
