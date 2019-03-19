@@ -220,6 +220,10 @@ function cargarArreglo(){
  	mapeoClima.set("Mar De Las Pampas", "https://forecast7.com/en/n37d33n57d02/mar-de-las-pampas/");
 }
 
+export function recargar(){
+	window.location.reload();
+}
+
 const App = () => (
   <DataProvider endpoint="api/scrap/" 
                 render={data => <RentalPage data={data} />}

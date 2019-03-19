@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import key from "weak-key";
 import obtenerInformacion from "./App";
+import recargar from "./App";
 import {ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima} from "./App";
 import { Component } from 'react'; 
 import { Form, FormControl, Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
@@ -11,14 +12,8 @@ const RentalPage = ({ data }) =>
     <div className="column">
      
     <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="#">Home</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-  </Navbar>  
-
+      <Navbar.Brand onClick={recargar} href="../static/img/ubicacion.png">Home</Navbar.Brand>    
+    </Navbar>  
 
    <section className="bg-light" id="portfolio">
     <div className="container">
