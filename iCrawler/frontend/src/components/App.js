@@ -13,22 +13,16 @@ let urlRentalugar = "";
 
 const urlBaseParaIrnos = "https://www.parairnos.com/alquileres-en-";
 const urlBaseRental = "http://www.rentalugar.com/alquileres-en-la-costa/";
+const mapeoClima = new Map();
+
 
 var ciudad = "";
 var llegada = "";
 var salida = "";
 var cantPersonas = "";
+var ciudadConEspacios ="";
 
-export{ciudad, llegada, salida, cantPersonas};
-
-/*
-export default function imgSize() {
-  let styles = {
-    width: '100%',
-    height: '15vw',
-  };
-}
-*/
+export{ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima};
 
 export default function obtenerInformacion(){
 	ciudad = document.getElementById('ciudad').value;
@@ -36,6 +30,7 @@ export default function obtenerInformacion(){
 	salida = document.getElementById('salida').value;
 	cantPersonas = document.getElementById('cantPersonas').value;
 
+	replaceCiudad();
 	var validaFecha = chequeoFechas();
 
 	var hayPersonas = (cantPersonas!= "");
@@ -66,8 +61,15 @@ export default function obtenerInformacion(){
  		return ;
  	}
 
+ 	cargarArreglo();
+
 	const wrapper = document.getElementById("ppal");
 	wrapper ? ReactDOM.render(<App />, wrapper) : null;	
+}
+
+function replaceCiudad(){
+	ciudadConEspacios = ciudad.replace(/-/g,' ');
+	ciudadConEspacios = ciudadConEspacios.replace(/\b\w/g, l => l.toUpperCase());
 }
 
 function armarUrlParaIrnosConFechaSinPersonas(llegadaPI, salidaPI){
@@ -206,6 +208,16 @@ function armarArregloCapacidad(){
 	//Elimino ultimo elemento del string porque es una coma
 	stringCapacidad = stringCapacidad.slice(0, -1);
 	return stringCapacidad;
+}
+
+function cargarArreglo(){
+ 	mapeoClima.set("Mar Del Plata", "https://forecast7.com/en/n38d01n57d54/mar-del-plata/");
+ 	mapeoClima.set("Monte Hermoso", "https://forecast7.com/en/n38d99n61d29/monte-hermoso/");
+ 	mapeoClima.set("Pinamar", "https://forecast7.com/en/n37d11n56d86/pinamar/");
+ 	mapeoClima.set("Miramar", "https://forecast7.com/en/n38d27n57d84/miramar/");
+ 	mapeoClima.set("Mar De Ajo", "https://forecast7.com/en/n36d72n56d68/mar-de-ajo/");
+ 	mapeoClima.set("Villa Gesell", "https://forecast7.com/en/n37d26n56d97/villa-gesell/");
+ 	mapeoClima.set("Mar De Las Pampas", "https://forecast7.com/en/n37d33n57d02/mar-de-las-pampas/");
 }
 
 const App = () => (
