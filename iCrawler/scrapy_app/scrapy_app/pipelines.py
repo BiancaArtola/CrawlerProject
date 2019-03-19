@@ -53,12 +53,12 @@ class ScrapyAppPipeline(object):
             item.unique_id = self.unique_id
             item.url = url
             if imagen == None:
-                item.imagen= "no-image"
+                item.imagen= "http://textiletrends.in/gallery/1547020644No_Image_Available.jpg"
             else:
                 item.imagen= imagen
             item.titulo = titulo
             if direccion == None:
-                item.direccion= "no-dir"
+                item.direccion= "Sin dirección"
             else:
                 item.direccion= direccion
             item.save()

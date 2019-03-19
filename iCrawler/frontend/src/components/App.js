@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import DataProvider from "./DataProvider";
 import RentalPage from "./RentalPage";
 import WaitPage from "./WaitPage";
+import {armarUrlSinFechaParaIrnos, armarUrlParaIrnosBasica, armarUrlParaIrnosCompleta, armarUrlParaIrnosConFechaSinPersonas} from "./ParaIrnosUrl";
+import {armarUrlRentalBasica, armarUrlSinFechaRental, armarUrlRentalCompleta, armarUrlRentalConFechaSinPersonas} from './RentaLugarUrl';
+
 
 const botonBuscar = <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" onClick={obtenerInformacion}>Buscar</a>
 const wrapper = document.getElementById("app");
@@ -36,24 +39,24 @@ export default function obtenerInformacion(){
 	var hayPersonas = (cantPersonas!= "");
 
 	if (validaFecha == 0 && hayPersonas){
-		urlParairnos = armarUrlSinFechaParaIrnos();
-		urlRentalugar = armarUrlSinFechaRental();
+		urlParairnos = armarUrlSinFechaParaIrnos(ciudad, cantPersonas);
+		urlRentalugar = armarUrlSinFechaRental(ciudad, cantPersonas);
 	}
 	else if (validaFecha == 0 && !hayPersonas){
-		urlParairnos = armarUrlParaIrnosBasica();
-		urlRentalugar = armarUrlRentalBasica();
+		urlParairnos = armarUrlParaIrnosBasica(ciudad);
+		urlRentalugar = armarUrlRentalBasica(ciudad);
 	}
 	else if (validaFecha == 2) {
 		var llegadaPI = rearmarFecha(llegada);
 		var salidaPI = rearmarFecha(salida);
 
 		if (hayPersonas){
-		 	urlParairnos = armarUrlParaIrnosCompleta(llegadaPI, salidaPI);
-			urlRentalugar = armarUrlRentalCompleta();	
+		 	urlParairnos = armarUrlParaIrnosCompleta(ciudad, cantPersonas, llegadaPI, salidaPI);
+			urlRentalugar = armarUrlRentalCompleta(ciudad, cantPersonas, llegada, salida);	
 		}
 		else {
-			urlParairnos = armarUrlParaIrnosConFechaSinPersonas(llegadaPI, salidaPI);
-			urlRentalugar = armarUrlRentalConFechaSinPersonas();
+			urlParairnos = armarUrlParaIrnosConFechaSinPersonas(ciudad, llegadaPI, salidaPI);
+			urlRentalugar = armarUrlRentalConFechaSinPersonas(ciudad, llegada, salida);
 		}
  	}
  	else{
@@ -70,45 +73,6 @@ export default function obtenerInformacion(){
 function replaceCiudad(){
 	ciudadConEspacios = ciudad.replace(/-/g,' ');
 	ciudadConEspacios = ciudadConEspacios.replace(/\b\w/g, l => l.toUpperCase());
-}
-
-function armarUrlParaIrnosConFechaSinPersonas(llegadaPI, salidaPI){
-	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
-	var urlFinal = urlConCiudad+"-del-"+llegadaPI+"-al-"+salidaPI;
-	return urlFinal;
-}
-
-function armarUrlRentalConFechaSinPersonas(){
-	var urlConCiudad = urlBaseRental.concat(ciudad);
-	if (ciudad == "monte-hermoso")
-		urlConCiudad = urlConCiudad.concat("-buenos-aires");
-	var urlFecha = urlConCiudad+"/?&from="+llegada+"&to="+salida;
-	return urlFecha;
-}
-
-function armarUrlParaIrnosBasica(){
-	return urlBaseParaIrnos.concat(ciudad);
-}
-
-function armarUrlRentalBasica(){
-	var urlConCiudad = urlBaseRental.concat(ciudad);
-	if (ciudad == "monte-hermoso")
-		urlConCiudad = urlConCiudad.concat("-buenos-aires");
-	return urlConCiudad;
-}
-
-function armarUrlSinFechaParaIrnos(){
-	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
-	var urlFinal= urlConCiudad+"-para-"+cantPersonas+"-personas";
-	return urlFinal;
-}
-
-function armarUrlSinFechaRental(){
-	var urlConCiudad = urlBaseRental.concat(ciudad);
-	if (ciudad == "monte-hermoso")
-		urlConCiudad = urlConCiudad.concat("-buenos-aires");
-	var urlFinal = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad();
-	return urlFinal;
 }
 
 function chequeoFechas(){
@@ -183,32 +147,6 @@ function rearmarFecha(fecha){
 }
 
 
-function armarUrlParaIrnosCompleta(llegadaPI, salidaPI){
-	var urlConCiudad= urlBaseParaIrnos.concat(ciudad);
-	var urlCiudadPersonas= urlConCiudad+"-para-"+cantPersonas+"-personas-";
-	var urlFinal = urlCiudadPersonas+"del-"+llegadaPI+"-al-"+salidaPI;
-	return urlFinal;
-}
-
-function armarUrlRentalCompleta(){
-	var urlConCiudad = urlBaseRental.concat(ciudad);
-	if (ciudad == "monte-hermoso")
-		urlRentalugar = urlRentalugar.concat("-buenos-aires");
-	var urlCapacidad = urlConCiudad+"/?capacidad_hasta="+armarArregloCapacidad();
-	var urlFecha = urlCapacidad+"&from="+llegada+"&to="+salida;
-	return urlFecha;
-}
-
-function armarArregloCapacidad(){
-	var numeroPrincipal = [262,261,260,259,258,257,256,255,254,253,252,251,250,249,248];
-	var stringCapacidad = "";
-	for (var i=cantPersonas-1; i<15; i++)
-		stringCapacidad= stringCapacidad+""+numeroPrincipal[i]+",";
-
-	//Elimino ultimo elemento del string porque es una coma
-	stringCapacidad = stringCapacidad.slice(0, -1);
-	return stringCapacidad;
-}
 
 function cargarArreglo(){
  	mapeoClima.set("Mar Del Plata", "https://forecast7.com/en/n38d01n57d54/mar-del-plata/");
@@ -218,11 +156,6 @@ function cargarArreglo(){
  	mapeoClima.set("Mar De Ajo", "https://forecast7.com/en/n36d72n56d68/mar-de-ajo/");
  	mapeoClima.set("Villa Gesell", "https://forecast7.com/en/n37d26n56d97/villa-gesell/");
  	mapeoClima.set("Mar De Las Pampas", "https://forecast7.com/en/n37d33n57d02/mar-de-las-pampas/");
-}
-
-export function recargar(){
-	alert("recargar")
-	window.location.reload();
 }
 
 const App = () => (
