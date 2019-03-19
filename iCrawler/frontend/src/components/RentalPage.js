@@ -6,13 +6,14 @@ import recargar from "./App";
 import {ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima} from "./App";
 import { Component } from 'react'; 
 import { Form, FormControl, Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import ScrollUpButton from "react-scroll-up-button"; 
 
 const RentalPage = ({ data }) =>
   !data.length ? (
     <div className="column">
      
     <Navbar bg="dark" variant="dark">
-      <Navbar.Brand onClick={recargar} href="../static/img/ubicacion.png">Home</Navbar.Brand>    
+      <Navbar.Brand href=".">Home</Navbar.Brand>    
     </Navbar>  
 
    <section className="bg-light" id="portfolio">
@@ -35,13 +36,8 @@ const RentalPage = ({ data }) =>
   <div className="column">
      
     <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="#">Home</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-  </Navbar>  
+      <Navbar.Brand href=".">Home</Navbar.Brand>    
+    </Navbar>  
 
   <br />
 
@@ -66,12 +62,13 @@ const RentalPage = ({ data }) =>
     </div>
    </section>
 
+     <ScrollUpButton />
   </div>
 );
 
 const CardListItem = ({ propiedad }) => (
     <div className="col-md-4 col-sm-6 portfolio-item">
-          <a className="portfolio-link" data-toggle="modal" href={propiedad.url}>
+          <a className="portfolio-link" data-toggle="modal" href={propiedad.url} target="_blank">
             <div className="portfolio-hover">
               <div className="portfolio-hover-content">
                 <i className="fas fa-plus fa-3x"></i>
