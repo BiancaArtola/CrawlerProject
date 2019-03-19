@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import key from "weak-key";
-import obtenerInformacion from "./App";
 import recargar from "./App";
 import {ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima} from "./App";
 import { Component } from 'react'; 
@@ -12,7 +11,7 @@ const RentalPage = ({ data }) =>
     <div className="column">
      
     <Navbar bg="dark" variant="dark">
-      <Navbar.Brand onClick={recargar} href="../static/img/ubicacion.png">Home</Navbar.Brand>    
+      <Navbar.Brand href=".">Home</Navbar.Brand>    
     </Navbar>  
 
    <section className="bg-light" id="portfolio">
@@ -33,17 +32,12 @@ const RentalPage = ({ data }) =>
 
   ) : (
   <div className="column">
-     
-    <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="#">Home</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-  </Navbar>  
-
+      
   <br />
+  <Navbar bg="dark" variant="dark">
+      <Navbar.Brand href=".">Home</Navbar.Brand>    
+    </Navbar>  
+ 
 
    <a className="weatherwidget-io" href={mapeoClima.get(ciudadConEspacios)} 
     data-label_1={ciudadConEspacios} data-label_2="WEATHER" data-theme="pure" >{ciudadConEspacios} WEATHER</a>
@@ -71,7 +65,7 @@ const RentalPage = ({ data }) =>
 
 const CardListItem = ({ propiedad }) => (
     <div className="col-md-4 col-sm-6 portfolio-item">
-          <a className="portfolio-link" data-toggle="modal" href={propiedad.url}>
+          <a className="portfolio-link" data-toggle="modal" href={propiedad.url} target="_blank">
             <div className="portfolio-hover">
               <div className="portfolio-hover-content">
                 <i className="fas fa-plus fa-3x"></i>

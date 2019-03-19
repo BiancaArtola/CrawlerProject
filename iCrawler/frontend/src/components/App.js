@@ -221,6 +221,7 @@ function cargarArreglo(){
 }
 
 export function recargar(){
+	alert("recargar")
 	window.location.reload();
 }
 
