@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import key from "weak-key";
-import obtenerInformacion from "./App";
 import recargar from "./App";
 import {ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima} from "./App";
 import { Component } from 'react'; 
@@ -34,11 +33,12 @@ const RentalPage = ({ data }) =>
 
   ) : (
   <div className="column">
-     
-    <Navbar bg="dark" variant="dark">
+
+
+  <Navbar bg="dark" variant="dark">
       <Navbar.Brand href=".">Home</Navbar.Brand>    
     </Navbar>  
-
+ 
   <br />
 
    <a className="weatherwidget-io" href={mapeoClima.get(ciudadConEspacios)} 
