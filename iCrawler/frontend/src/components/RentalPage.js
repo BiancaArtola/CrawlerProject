@@ -4,7 +4,7 @@ import key from "weak-key";
 import recargar from "./App";
 import {ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima} from "./App";
 import { Component } from 'react'; 
-import { Form, FormControl, Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import ScrollUpButton from "react-scroll-up-button"; 
 
 const RentalPage = ({ data }) =>
