@@ -8,7 +8,6 @@ import ScrollUpButton from "react-scroll-up-button";
 import NavbarComponent from "./ReactComponents/NavbarComponent";
 import ClimaComponent from "./ReactComponents/ClimaComponent";
 import EmptySectionComponent from "./ReactComponents/EmptySectionComponent";
-import InformationComponent from "./ReactComponents/InformationComponent";
 import {crearCadenaInformacion} from "./App";
 
 const RentalPage = ({ data }) =>
