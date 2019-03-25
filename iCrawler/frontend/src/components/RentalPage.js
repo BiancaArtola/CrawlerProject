@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import key from "weak-key";
 import recargar from "./App";
-import {ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima} from "./App";
+import {ciudadConEspacios, mapeoClima} from "./App";
 import { Component } from 'react'; 
 import ScrollUpButton from "react-scroll-up-button"; 
 import NavbarComponent from "./ReactComponents/NavbarComponent";
 import ClimaComponent from "./ReactComponents/ClimaComponent";
 import EmptySectionComponent from "./ReactComponents/EmptySectionComponent";
+import InformationComponent from "./ReactComponents/InformationComponent";
+import {crearCadenaInformacion} from "./App";
 
 const RentalPage = ({ data }) =>
   !data.length ? (
@@ -26,7 +28,7 @@ const RentalPage = ({ data }) =>
           <div className="col-lg-12 text-center">                
                 <div className="container"> 
                   <h2 class="section-heading text-uppercase">Alquileres en {ciudadConEspacios}</h2>
-                  <h3 className="section-subheading text-muted">Se han encontrado <strong>{data.length} resultados</strong>.</h3>               
+                  <h3 className="section-subheading text-muted">Se han encontrado <strong>{data.length} resultados</strong> {crearCadenaInformacion()}.</h3>          
                 </div>
           </div>        
         </div>   

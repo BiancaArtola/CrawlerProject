@@ -6,7 +6,6 @@ class DataProvider extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          url: 'http://www.rentalugar.com/alquileres-en-la-costa/mar-del-plata',
           crawlingStatus: null,
           data: null,
           taskID: null,

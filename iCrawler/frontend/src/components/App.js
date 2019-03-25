@@ -85,13 +85,39 @@ function replaceCiudad(){
 
 
 function cargarArreglo(){
- 	mapeoClima.set("Mar Del Plata", "https://forecast7.com/en/n38d01n57d54/mar-del-plata/");
- 	mapeoClima.set("Monte Hermoso", "https://forecast7.com/en/n38d99n61d29/monte-hermoso/");
- 	mapeoClima.set("Pinamar", "https://forecast7.com/en/n37d11n56d86/pinamar/");
- 	mapeoClima.set("Miramar", "https://forecast7.com/en/n38d27n57d84/miramar/");
- 	mapeoClima.set("Mar De Ajo", "https://forecast7.com/en/n36d72n56d68/mar-de-ajo/");
- 	mapeoClima.set("Villa Gesell", "https://forecast7.com/en/n37d26n56d97/villa-gesell/");
- 	mapeoClima.set("Mar De Las Pampas", "https://forecast7.com/en/n37d33n57d02/mar-de-las-pampas/");
+ 	mapeoClima.set("Mar Del Plata", "https://forecast7.com/es/n38d01n57d54/mar-del-plata/");
+ 	mapeoClima.set("Monte Hermoso", "https://forecast7.com/es/n38d99n61d29/monte-hermoso/");
+ 	mapeoClima.set("Pinamar", "https://forecast7.com/es/n37d11n56d86/pinamar/");
+ 	mapeoClima.set("Miramar", "https://forecast7.com/es/n38d27n57d84/miramar/");
+ 	mapeoClima.set("Mar De Ajo", "https://forecast7.com/es/n36d72n56d68/mar-de-ajo/");
+ 	mapeoClima.set("Villa Gesell", "https://forecast7.com/es/n37d26n56d97/villa-gesell/");
+ 	mapeoClima.set("Mar De Las Pampas", "https://forecast7.com/es/n37d33n57d02/mar-de-las-pampas/");
+}
+
+export function crearCadenaInformacion(){
+	if (cantPersonas=="" && llegada=="")
+	{
+		return "";
+	}
+	else
+	{
+		if(cantPersonas!="" && llegada=="")
+		{
+			return "para "+cantPersonas+" personas";
+		}
+		else
+		{	
+			if(cantPersonas=="" && llegada !="")
+			{
+				return "desde el "+llegada+" hasta el "+salida+"";
+			}
+			else
+			{
+				return "para "+cantPersonas+" personas desde el "+llegada+" hasta el "+salida+"";
+			}
+		}
+	}
+
 }
 
 const App = () => (

@@ -5,7 +5,7 @@ class ClimaComponent extends Component {
 	render() {
 		return (
 			 <a className="weatherwidget-io" href={mapeoClima.get(ciudadConEspacios)} 
-    		data-label_1={ciudadConEspacios} data-label_2="WEATHER" data-theme="pure" >{ciudadConEspacios} WEATHER</a>
+    		data-label_1={ciudadConEspacios} data-label_2="TIEMPO" data-theme="pure" >{ciudadConEspacios} TIEMPO</a>
 
 		)
 	}
