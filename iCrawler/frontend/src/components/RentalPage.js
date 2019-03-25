@@ -4,65 +4,41 @@ import key from "weak-key";
 import recargar from "./App";
 import {ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima} from "./App";
 import { Component } from 'react'; 
-import { Navbar, Nav } from 'react-bootstrap';
 import ScrollUpButton from "react-scroll-up-button"; 
+import NavbarComponent from "./ReactComponents/NavbarComponent";
+import ClimaComponent from "./ReactComponents/ClimaComponent";
+import EmptySectionComponent from "./ReactComponents/EmptySectionComponent";
 
 const RentalPage = ({ data }) =>
   !data.length ? (
-    <div className="column">
-     
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href=".">Home</Navbar.Brand>    
-    </Navbar>  
-
-   <section className="bg-light" id="portfolio">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12 text-center">                
-              <div className="container"> 
-                <h2 class="section-heading text-uppercase">No se han encontrado resultados</h2>
-                <h3 className="section-subheading text-muted">Realice una nueva busqueda</h3>               
-              </div>
-        </div>        
-      </div>   
-     
+    <div className="column">     
+      <NavbarComponent />
+      <EmptySectionComponent />
     </div>
-   </section>
-
-  </div>
-
   ) : (
   <div className="column">
+    <NavbarComponent />   
+    <ClimaComponent />
 
-
-  <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href=".">Home</Navbar.Brand>    
-    </Navbar>  
- 
-  <br />
-
-   <a className="weatherwidget-io" href={mapeoClima.get(ciudadConEspacios)} 
-    data-label_1={ciudadConEspacios} data-label_2="WEATHER" data-theme="pure" >{ciudadConEspacios} WEATHER</a>
-
-   <section className="bg-light" id="portfolio">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12 text-center">                
-              <div className="container"> 
-                <h2 class="section-heading text-uppercase">Alquileres en {ciudadConEspacios}</h2>
-                <h3 className="section-subheading text-muted">Se han encontrado <strong>{data.length} resultados</strong>.</h3>               
-              </div>
-        </div>        
-      </div>   
-      <div className="row">        
-        {
-          data.map(propiedad => CardListItem({ propiedad }))
-        }      
+    <section className="bg-light" id="portfolio">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 text-center">                
+                <div className="container"> 
+                  <h2 class="section-heading text-uppercase">Alquileres en {ciudadConEspacios}</h2>
+                  <h3 className="section-subheading text-muted">Se han encontrado <strong>{data.length} resultados</strong>.</h3>               
+                </div>
+          </div>        
+        </div>   
+        <div className="row">        
+          {
+            data.map(propiedad => CardListItem({ propiedad }))
+          }      
+        </div>
       </div>
-    </div>
-   </section>
+    </section>
 
-     <ScrollUpButton />
+    <ScrollUpButton />
   </div>
 );
 
