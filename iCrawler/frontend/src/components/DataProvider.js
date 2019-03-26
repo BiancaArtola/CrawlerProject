@@ -73,14 +73,10 @@ class DataProvider extends Component {
   render() {
     const status = this.state.crawlingStatus;
     const data= JSON.parse(this.state.data);
-    const data2= "algo";
-    if (data)
-    {
+    const data2= "String no vacio";
+    if (data)    
       return this.props.render(data);
-    }
     else
       return this.props.render2(data2);
-  }
-
-}
+}}
 export default DataProvider;

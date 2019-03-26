@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import key from "weak-key";
-import recargar from "./App";
-import {ciudadConEspacios, mapeoClima} from "./App";
+import {ciudadConEspacios, mapeoClima} from "./../App";
 import { Component } from 'react'; 
 import ScrollUpButton from "react-scroll-up-button"; 
-import NavbarComponent from "./ReactComponents/NavbarComponent";
-import ClimaComponent from "./ReactComponents/ClimaComponent";
-import EmptySectionComponent from "./ReactComponents/EmptySectionComponent";
-import {crearCadenaInformacion} from "./App";
+import NavbarComponent from "./../ReactComponents/NavbarComponent";
+import ClimaComponent from "./../ReactComponents/ClimaComponent";
+import EmptySectionComponent from "./../ReactComponents/EmptySectionComponent";
+import {crearCadenaInformacion} from "./../App";
 
 const RentalPage = ({ data }) =>
   !data.length ? (
@@ -32,9 +31,7 @@ const RentalPage = ({ data }) =>
           </div>        
         </div>   
         <div className="row">        
-          {
-            data.map(propiedad => CardListItem({ propiedad }))
-          }      
+          {data.map(propiedad => CardListItem({ propiedad }))}      
         </div>
       </div>
     </section>

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import DataProvider from "./DataProvider";
-import RentalPage from "./RentalPage";
-import WaitPage from "./WaitPage";
-import * as ClaseParaIrnos from "./PagesManage/ParaIrnosUrl";
-import * as ClaseRentaLugar from './PagesManage/RentaLugarUrl';
+import RentalPage from "./ReactPages/RentalPage";
+import WaitPage from "./ReactPages/WaitPage";
+import * as ClaseParaIrnos from "./UrlManage/ParaIrnosUrl";
+import * as ClaseRentaLugar from './UrlManage/RentaLugarUrl';
 import * as ClaseFechas from './ManejoFechas';
 
 
@@ -31,7 +31,7 @@ export{ciudadConEspacios, llegada, salida, cantPersonas, mapeoClima};
 
 export default function cargarAlquileres(){
 	obtenerInformacion();
-	replaceCiudad();
+	remplazarNombreCiudad();
 	if (realizarValidacion() == 5)
 		return;
 	cargarArreglo();
@@ -78,13 +78,13 @@ function realizarValidacion(){
  		return 5;
 }
 
-function replaceCiudad(){
+function remplazarNombreCiudad(){ //Remplaza - por espacios
 	ciudadConEspacios = ciudad.replace(/-/g,' ');
 	ciudadConEspacios = ciudadConEspacios.replace(/\b\w/g, l => l.toUpperCase());
 }
 
 
-function cargarArreglo(){
+function cargarArreglo(){ //Carga componentes de mapeo con url del clima
  	mapeoClima.set("Mar Del Plata", "https://forecast7.com/es/n38d01n57d54/mar-del-plata/");
  	mapeoClima.set("Monte Hermoso", "https://forecast7.com/es/n38d99n61d29/monte-hermoso/");
  	mapeoClima.set("Pinamar", "https://forecast7.com/es/n37d11n56d86/pinamar/");
@@ -94,30 +94,19 @@ function cargarArreglo(){
  	mapeoClima.set("Mar De Las Pampas", "https://forecast7.com/es/n37d33n57d02/mar-de-las-pampas/");
 }
 
-export function crearCadenaInformacion(){
-	if (cantPersonas=="" && llegada=="")
-	{
+export function crearCadenaInformacion(){ 
+	if (cantPersonas=="" && llegada=="")	
 		return "";
-	}
-	else
-	{
-		if(cantPersonas!="" && llegada=="")
-		{
-			return "para "+cantPersonas+" personas";
-		}
-		else
-		{	
-			if(cantPersonas=="" && llegada !="")
-			{
+	else{
+		if(cantPersonas!="" && llegada=="")		
+			return "para "+cantPersonas+" personas";		
+		else{	
+			if(cantPersonas=="" && llegada !="")			
 				return "desde el "+llegada+" hasta el "+salida+"";
-			}
-			else
-			{
+			else			
 				return "para "+cantPersonas+" personas desde el "+llegada+" hasta el "+salida+"";
-			}
 		}
 	}
-
 }
 
 const App = () => (
