@@ -1,8 +1,6 @@
 import json
 from django.db import models
 
-
-
 class Propiedad(models.Model):
     unique_id = models.CharField(max_length=100, null=True)
     imagen = models.TextField()

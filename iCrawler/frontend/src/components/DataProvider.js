@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-
 class DataProvider extends Component {
   constructor(props) {
       super(props)
@@ -22,22 +21,19 @@ class DataProvider extends Component {
     urlRentalDP: PropTypes.string.isRequired
   };
   
-  componentDidMount = () => {
-  
+  componentDidMount = () => {  
     
     $.post('/api/crawl/', { url: this.props.urlParairnosDP , url2: this.props.urlRentalDP }, resp => {
         if (resp.error) {
             alert(resp.error)
             return
-        }
-        
+        }        
         this.setState({
             taskID1: resp.task_id1,
             taskID2: resp.task_id2,
             uniqueID: resp.unique_id,
             crawlingStatus: resp.status
-        }, () => {
-            
+        }, () => {            
             this.statusInterval = setInterval(this.checkCrawlStatus, 2000)
         });
     });
@@ -47,12 +43,10 @@ class DataProvider extends Component {
       clearInterval(this.statusInterval)
   }
 
-  checkCrawlStatus = () => {
-      
+  checkCrawlStatus = () => {      
       $.get('/api/crawl/',
             { task_id1: this.state.taskID1,task_id2: this.state.taskID2, unique_id: this.state.uniqueID }, resp => {
-          if (resp.data) {
-              
+          if (resp.data) {              
               clearInterval(this.statusInterval)
               this.setState({
                   data: resp.data

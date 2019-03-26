@@ -11,7 +11,7 @@ from main.models import Propiedad
 from rest_framework import generics
 import json
 
-# connect scrapyd service
+# Conectando Scrapyd
 scrapyd = ScrapydAPI('http://localhost:6800')
 
 
@@ -51,7 +51,7 @@ def crawl(request):
         unique_id = str(uuid4()) 
         
         settings = {
-            'unique_id': unique_id, # unique ID for each record for DB
+            'unique_id': unique_id, 
             'USER_AGENT': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
         }
         

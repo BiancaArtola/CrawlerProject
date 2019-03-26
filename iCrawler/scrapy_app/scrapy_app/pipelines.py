@@ -13,12 +13,10 @@ class ScrapyAppPipeline(object):
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            unique_id=crawler.settings.get('unique_id'), # this will be passed from django view
+            unique_id=crawler.settings.get('unique_id'), 
         )
 
-    def close_spider(self, spider):
-        # And here we are saving our crawled data with django models.
-        
+    def close_spider(self, spider):        
         for imagen,url,titulo,direccion in zip(self.imagenes,self.urls,self.titulos,self.direcciones):
             item = Propiedad()
             item.unique_id = self.unique_id

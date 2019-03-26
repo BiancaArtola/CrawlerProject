@@ -7,20 +7,18 @@ import * as ClaseParaIrnos from "./UrlManage/ParaIrnosUrl";
 import * as ClaseRentaLugar from './UrlManage/RentaLugarUrl';
 import * as ClaseFechas from './ManejoFechas';
 
-
 const botonBuscar = <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" onClick={cargarAlquileres}>Buscar</a>
 const wrapper = document.getElementById("app");
 wrapper ? ReactDOM.render(botonBuscar, wrapper) : null;
 
-
+//Inhabilitamos el ingreso de fechas menores al dia de hoy
 document.getElementById("llegada").min = ClaseFechas.armarFechaHoy();
 document.getElementById("salida").min = ClaseFechas.armarFechaHoy();
 
+
 let urlParairnos = "";
 let urlRentalugar = "";
-
 const mapeoClima = new Map();
-
 var ciudad = "";
 var llegada = "";
 var salida = "";
@@ -49,8 +47,7 @@ function obtenerInformacion(){
 }
 
 function realizarValidacion(){
-	var validaFecha = ClaseFechas.chequeoFechas(llegada, salida);
-
+	var validaFecha = ClaseFechas.chequeoFechas(llegada, salida); 
 	var hayPersonas = (cantPersonas!= "");
 
 	if (validaFecha == 0 && hayPersonas){
@@ -94,7 +91,7 @@ function cargarArreglo(){ //Carga componentes de mapeo con url del clima
  	mapeoClima.set("Mar De Las Pampas", "https://forecast7.com/es/n37d33n57d02/mar-de-las-pampas/");
 }
 
-export function crearCadenaInformacion(){ 
+export function crearCadenaInformacion(){  //Crea el string de informacion dependiendo de los parametros ingresados por el usuario
 	if (cantPersonas=="" && llegada=="")	
 		return "";
 	else{

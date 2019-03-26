@@ -46,11 +46,11 @@ export function armarFechaHoy() {
 	return AnoHoy+'-'+MesHoy+'-'+DiaHoy;
 }
 
-export function rearmarFecha(fecha){
+export function rearmarFecha(fecha){ //Cambia del formato de fecha anio/mes/dia --> dia/mes/anio
 	var date = new Date(fecha);
 	var year, month, day;
 
-	if ( !!date.valueOf() ) { // Valid date
+	if ( !!date.valueOf() ) { 
 	    year = date.getFullYear();
 	    month = date.getMonth()+1;
 	    day = date.getDate()+1;
