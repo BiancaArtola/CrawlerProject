@@ -9,6 +9,11 @@ The main screen of the website looks like this:
 <img src="https://i.ibb.co/Zx2wZHS/Sin-t-tulo.png" alt="drawing" />
 </p>
 
+## Funtionality
+In this image you can see a basic explanation of how the web works:
+<p align="center">
+<img src="https://i.ibb.co/w6pgrZ9/IAW.png" alt="drawing" />
+</p>
 
 ## Built With
 
